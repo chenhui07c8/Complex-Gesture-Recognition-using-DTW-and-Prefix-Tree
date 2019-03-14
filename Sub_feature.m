@@ -1,5 +1,5 @@
 function [ori,seq] = Sub_feature(ref,div_win,active_coe)
-% active_coe = 0.5 
+% active_coe = 0.5
     count = 1;    
     ori = [];
     len = length(ref);
@@ -20,10 +20,13 @@ function [ori,seq] = Sub_feature(ref,div_win,active_coe)
         else
             angle_temp = atan2((ref(2,t2)-ref(2,t1)),(ref(1,t2)-ref(1,t1)))*180/pi;
             ori = [ori [cos(angle_temp/180*pi);sin(angle_temp/180*pi)]];
+    %         ori(count) = angle_temp;
             seq(count) = ceil(mod((angle_temp+45/2)+360,360)/45);
             count = count + 1;
         
             seq = nonzeros(seq)';
+    %     seq_temp = y_norm(t1:t2);
+    %     v_val(i) = sum(seq_temp)/length(seq_temp);
         end
         
         t1 = t2;
